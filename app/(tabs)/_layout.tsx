@@ -1,43 +1,60 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
-import { Platform } from 'react-native';
+import { Tabs } from "expo-router";
+import { AntDesign, SimpleLineIcons, Octicons } from "@expo/vector-icons";
 
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
+export default function RootLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
-      }}>
+        // Top Tab Bar Styling
+        headerStyle: {
+          backgroundColor: "#007AFF",
+        },
+        headerTintColor: "#fff",
+        headerTitleAlign: "center",
+
+        // Bottom Tab Bar Styling
+        tabBarStyle: {
+          height: 70,
+          paddingBottom: 10,
+          paddingTop: 10,
+        },
+        tabBarLabelStyle: {
+          fontSize: 13,
+          fontWeight: "bold",
+          marginVertical: 5,
+        },
+
+        tabBarActiveTintColor: "#007AFF", // Active tab color (blue)
+        tabBarInactiveTintColor: "gray", // Inactive tab color (gray)
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          title: "Hey Corto",
+          tabBarIcon: ({ color }) => (
+            <AntDesign name="search1" size={30} color={color} />
+          ),
         }}
       />
+
       <Tabs.Screen
-        name="explore"
+        name="flights"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: "Flights",
+          tabBarIcon: ({ color }) => (
+            <SimpleLineIcons name="plane" size={30} color={color} />
+          ),
+        }}
+      />
+
+      <Tabs.Screen
+        name="deals"
+        options={{
+          title: "Deals",
+          tabBarIcon: ({ color }) => (
+            <Octicons name="tag" size={30} color={color} />
+          ),
         }}
       />
     </Tabs>
