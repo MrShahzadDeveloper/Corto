@@ -17,6 +17,7 @@ interface Product {
 interface ProductContextType {
     products: Product[];
     fetchProducts: (query: string) => void;
+    fetchAllProducts: () => void;
     loading: boolean;
 }
 
@@ -41,8 +42,21 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
         } 
     };
 
+    const fetchAllProducts = async() =>{
+        setLoading(true)
+        try{
+            const productResponse = await fetch(`https://dummyjson.com/products`)
+            const productsData = await productResponse.json()
+            setProducts(productsData.products)
+            setLoading(false)
+        }catch (err) {
+            console.error(err);
+            setLoading(false);
+        } 
+    }
+
     return (
-        <ProductContext.Provider value={{ products, fetchProducts, loading }}>
+        <ProductContext.Provider value={{ products, fetchProducts, loading, fetchAllProducts }}>
             {children}
         </ProductContext.Provider>
     );
