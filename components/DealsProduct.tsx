@@ -10,7 +10,6 @@ const DealsProduct = () => {
         fetchAllProducts();
     }, []);
 
-    // Filter products with discounts > 15%
     const discountedProducts = products.filter((product) => product.discountPercentage > 15);
 
     return (
@@ -31,22 +30,22 @@ const DealsProduct = () => {
                 ) : (
                     discountedProducts.map((item) => (
                         <View key={item.id} style={styles.card}>
-                            {/* Discount Badge */}
+                           
                             <View style={styles.discountBadge}>
                                 <Text style={styles.discountText}>
                                     {Math.round(item.discountPercentage)}% OFF
                                 </Text>
                             </View>
 
-                            {/* Product Image */}
+                           
                             <Image style={styles.productImage} source={{ uri: item.thumbnail }} />
 
-                            {/* Product Details */}
+                           
                             <View style={styles.details}>
                                 <Text style={styles.productName}>{item.title}</Text>
                                 <Text style={styles.storeName}>{item.warrantyInformation || "No Warranty Info"}</Text>
 
-                                {/* Pricing Section */}
+                               
                                 <View style={styles.priceSection}>
                                     <Text style={styles.discountedPrice}>
                                         ${((item.price * (100 - item.discountPercentage)) / 100).toFixed(2)}

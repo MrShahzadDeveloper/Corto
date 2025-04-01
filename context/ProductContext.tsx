@@ -21,10 +21,9 @@ interface ProductContextType {
     loading: boolean;
 }
 
-// Create Context
+
 const ProductContext = createContext<ProductContextType | undefined>(undefined);
 
-// Provider Component
 export const ProductProvider = ({ children }: { children: ReactNode }) => {
     const [products, setProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
@@ -34,7 +33,7 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
         try {
             const response = await fetch(`https://dummyjson.com/products/search?q=${query}`);
             const data = await response.json();
-            setProducts(data.products); // Extract the products array
+            setProducts(data.products); 
             setLoading(false);
         } catch (err) {
             console.error(err);
@@ -62,7 +61,6 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
     );
 };
 
-// Custom Hook to Use Context
 export const useProductContext = () => {
     const context = useContext(ProductContext);
     if (!context) {

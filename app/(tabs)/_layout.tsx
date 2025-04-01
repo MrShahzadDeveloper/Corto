@@ -8,7 +8,7 @@ export default function RootLayout() {
     <Tabs
     
       screenOptions={{
-        // Top Tab Bar Styling
+       
         headerStyle: {
           backgroundColor: "#007AFF",
         },
@@ -20,7 +20,7 @@ export default function RootLayout() {
         headerTintColor: "#fff",
         headerTitleAlign: "center",
 
-        // Bottom Tab Bar Styling
+        
         tabBarStyle: {
           height: 70,
           paddingBottom: 10,

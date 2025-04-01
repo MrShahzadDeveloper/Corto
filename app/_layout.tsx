@@ -36,7 +36,7 @@ const Layout = () => {
                     )}
                     label={"Corto"}
                     onPress={() => {
-                        router.push("/(tabs)/index")
+                        router.push("/")
                     }}
                 />
                 <DrawerItem

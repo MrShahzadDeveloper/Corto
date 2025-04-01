@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     },
     scrollContainer: {
         flexGrow: 1,
-        paddingBottom: 30, // Adjust this based on your tab bar height
+        paddingBottom: 30, 
     },
     main: {
         flex: 1,

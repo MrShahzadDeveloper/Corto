@@ -5,17 +5,15 @@ const Shimmer = () => {
     return (
         <>
             <View style={styles.p_container}>
-                {/* Shipping Badge */}
+             
                 <View style={styles.ship}>
                     <View style={styles.freeShipping} />
                 </View>
 
-                {/* Image Placeholder */}
                 <View style={styles.productImage} />
 
-                {/* Product Info */}
                 <View style={styles.con_text}>
-                    {/* Left Section */}
+                   
                     <View style={styles.left_con}>
                         <View style={styles.productName} />
                         <View style={styles.storeName} />
@@ -25,7 +23,6 @@ const Shimmer = () => {
                         </View>
                     </View>
 
-                    {/* Right Section */}
                     <View style={styles.right_con}>
                         <View style={styles.rating}>
                         </View>
@@ -36,17 +33,14 @@ const Shimmer = () => {
                 </View>
             </View>
             <View style={styles.p_container}>
-                {/* Shipping Badge */}
+                
                 <View style={styles.ship}>
                     <View style={styles.freeShipping} />
                 </View>
 
-                {/* Image Placeholder */}
                 <View style={styles.productImage} />
 
-                {/* Product Info */}
                 <View style={styles.con_text}>
-                    {/* Left Section */}
                     <View style={styles.left_con}>
                         <View style={styles.productName} />
                         <View style={styles.storeName} />
@@ -56,7 +50,6 @@ const Shimmer = () => {
                         </View>
                     </View>
 
-                    {/* Right Section */}
                     <View style={styles.right_con}>
                         <View style={styles.rating}>
                         </View>

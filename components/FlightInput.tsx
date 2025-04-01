@@ -41,7 +41,7 @@ const FlightInput = () => {
     return (
         <>
             <ScrollView style={styles.main}>
-                {/* Trip Type Selector */}
+                
                 <View style={styles.header}>
                     <TouchableOpacity
                         style={[styles.tripOption, tripType === 'round' && styles.activeOption]}
@@ -57,7 +57,6 @@ const FlightInput = () => {
                     </TouchableOpacity>
                 </View>
 
-                {/* Input Fields */}
                 <View style={styles.inputContainer}>
                     <View style={styles.inputCon}>
                         <AntDesign name="search1" size={20} color="#007AFF" style={styles.icon} />
@@ -118,12 +117,10 @@ const FlightInput = () => {
                     </TouchableOpacity>
                 </View>
 
-                {/* Search Button */}
                 <TouchableOpacity style={styles.searchButton}>
                     <Text style={styles.searchButtonText}>Search Flights</Text>
                 </TouchableOpacity>
 
-                {/* Calendar Modal */}
                 <Modal
                     isVisible={showCalendar}
                     style={styles.modal}
@@ -163,7 +160,6 @@ const FlightInput = () => {
                     </View>
                 </Modal>
 
-                {/* Passenger Selection Modal */}
                 <Modal
                     isVisible={showPassengerModal}
                     style={styles.modal}
