@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, View, Text, ScrollView, SafeAreaView } from 'react-native';
 import { SimpleLineIcons } from "@expo/vector-icons"
 import FlightInput from '@/components/FlightInput';
-import FlightDetails from '@/components/FlightDetails';
 
 const Flights = () => {
     return (
@@ -20,7 +19,7 @@ const Flights = () => {
                         <Text style={styles.header_para}>Find the best deals on flights worldwide</Text>
                     </View>
                     <FlightInput />
-                    <FlightDetails />
+                    
                 </View>
             </ScrollView>
         </SafeAreaView>

@@ -4,6 +4,7 @@ import { AntDesign, Feather, Octicons, Ionicons } from "@expo/vector-icons";
 import { Calendar } from 'react-native-calendars';
 import Modal from 'react-native-modal';
 import FlightDetails from './FlightDetails';
+import PopularDestination from './PopularDestination';
 
 type DayType = {
     dateString: string;
@@ -201,6 +202,7 @@ const FlightInput = () => {
                     </View>
                 </Modal>
             </ScrollView>
+            <PopularDestination />
             <FlightDetails city1={city1} city2={city2} />
         </>
     );

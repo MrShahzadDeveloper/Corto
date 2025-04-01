@@ -1,14 +1,22 @@
 import { Tabs } from "expo-router";
 import { AntDesign, SimpleLineIcons, Octicons } from "@expo/vector-icons";
+import { DrawerToggleButton } from "@react-navigation/drawer";
+import { View } from "react-native";
 
 export default function RootLayout() {
   return (
     <Tabs
+    
       screenOptions={{
         // Top Tab Bar Styling
         headerStyle: {
           backgroundColor: "#007AFF",
         },
+        headerLeft: () => (
+          <View style={{ marginLeft: 15 }}>
+            <DrawerToggleButton tintColor="#fff" />
+          </View>
+        ),
         headerTintColor: "#fff",
         headerTitleAlign: "center",
 
