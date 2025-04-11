@@ -1,22 +1,24 @@
 import React, { useEffect } from 'react';
 import { StyleSheet, View, Text, Image, ActivityIndicator, ScrollView } from 'react-native';
-import { useProductContext } from '@/context/ProductContext';
+import { useAppDispatch, useAppSelector } from '@/redux/features/hooks/hooks';
+import { getProducts } from '@/redux/features/products/productSlice';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 const DealsProduct = () => {
-    const { products, fetchAllProducts, loading } = useProductContext();
+    const dispatch = useAppDispatch();
+    const { items: products, loading, error } = useAppSelector((state) => state.products);
 
     useEffect(() => {
-        fetchAllProducts();
-    }, []);
+        dispatch(getProducts());
+    }, [dispatch]);
 
     const discountedProducts = products.filter((product) => product.discountPercentage > 15);
 
     return (
         <>
-            <View style = {styles.main_title}>
+            <View style={styles.main_title}>
                 <View style={styles.deal}>
-                    <Text style={styles.dealText}>All Avalible Deals</Text>
+                    <Text style={styles.dealText}>All Available Deals</Text>
                 </View>
             </View>
             <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
@@ -30,22 +32,15 @@ const DealsProduct = () => {
                 ) : (
                     discountedProducts.map((item) => (
                         <View key={item.id} style={styles.card}>
-                           
                             <View style={styles.discountBadge}>
                                 <Text style={styles.discountText}>
                                     {Math.round(item.discountPercentage)}% OFF
                                 </Text>
                             </View>
-
-                           
                             <Image style={styles.productImage} source={{ uri: item.thumbnail }} />
-
-                           
                             <View style={styles.details}>
                                 <Text style={styles.productName}>{item.title}</Text>
                                 <Text style={styles.storeName}>{item.warrantyInformation || "No Warranty Info"}</Text>
-
-                               
                                 <View style={styles.priceSection}>
                                     <Text style={styles.discountedPrice}>
                                         ${((item.price * (100 - item.discountPercentage)) / 100).toFixed(2)}
@@ -62,7 +57,8 @@ const DealsProduct = () => {
 };
 
 const styles = StyleSheet.create({
-    main_title:{
+    // your original styles
+    main_title: {
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: "#fff"
@@ -77,10 +73,7 @@ const styles = StyleSheet.create({
     dealText: {
         color: "#007AFF"
     },
-    container: {
-        // paddingVertical: 10,
-        // paddingHorizontal: 10,
-    },
+    container: {},
     card: {
         width: '95%',
         alignSelf: 'center',

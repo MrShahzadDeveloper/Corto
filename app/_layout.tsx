@@ -5,6 +5,8 @@ import { Image, StyleSheet, View, Text } from "react-native";
 import { DrawerContentScrollView, DrawerContentComponentProps, DrawerItem } from "@react-navigation/drawer";
 import { AntDesign, SimpleLineIcons, Octicons } from "@expo/vector-icons";
 import { router } from "expo-router";
+import { Provider } from "react-redux";
+import { store } from "../redux/store";
 
 const Layout = () => {
     const CustomDrawer = (props: DrawerContentComponentProps) => {
@@ -62,7 +64,7 @@ const Layout = () => {
     };
 
     return (
-        <>
+        <Provider store={store}>
             <StatusBar style="light" backgroundColor="#007AFF" />
             <GestureHandlerRootView style={{ flex: 1 }}>
                 <Drawer
@@ -74,7 +76,7 @@ const Layout = () => {
                     <Drawer.Screen name = "profile" options={{headerShown: true}} />
                 </Drawer>
             </GestureHandlerRootView>
-        </>
+        </Provider>
     );
 };
 
