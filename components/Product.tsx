@@ -1,11 +1,13 @@
 import React from 'react';
 import { StyleSheet, View, Image, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { Ionicons } from "@expo/vector-icons";
-import { useProductContext } from '@/context/ProductContext';
 import Shimmer from './Shimmer';
+import { useAppSelector } from '@/redux/features/hooks/hooks';
+
 
 const Product = () => {
-    const { products, loading } = useProductContext();
+
+    const { items: products, loading, error } = useAppSelector(state => state.products);
 
     return (
         <ScrollView contentContainerStyle={styles.scrollContainer} showsVerticalScrollIndicator={false}>
@@ -34,7 +36,7 @@ const Product = () => {
                                             <Text style={styles.storeName}>{product.warrantyInformation || "No Warranty Info"}</Text>
                                             <View style={styles.price}>
                                                 <Text style={styles.currency}>USD</Text>
-                                                <Text style={styles.priceValue}>{product.price}</Text>
+                                                <Text style={styles.priceValue}>${product.price}</Text>
                                             </View>
                                         </View>
 

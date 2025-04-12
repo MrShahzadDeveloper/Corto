@@ -1,46 +1,70 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { Product } from "./productsTypes";
-import { fetchProducts } from "./productsAPI";
+import { fetchProducts, searchProducts } from "./productsAPI";
 
-interface ProductsState{
-    items: Product[],
-    loading: boolean,
-    error: string | null
+interface ProductsState {
+  items: Product[];
+  loading: boolean;
+  error: string | null;
 }
 
 const initialState: ProductsState = {
-    items : [],
-    loading: false,
-    error: null
-}
+  items: [],
+  loading: false,
+  error: null,
+};
 
-export const getProducts = createAsyncThunk('products/getProducts', async () => {
+export const getProducts = createAsyncThunk<Product[]>(
+  'products/getProducts',
+  async () => {
     const products = await fetchProducts();
-    // console.log('Fetched products Shahzad:', products); // Add this to check bug
     return products;
-  });
+  }
+);
+
+export const searchProduct = createAsyncThunk<Product[], string>(
+  'products/searchProducts',
+  async (query: string) => {
+    const products = await searchProducts(query);
+    return products;
+  }
+);
 
 const productsSlice = createSlice({
-    name: 'products',
-    initialState,
-    reducers:{},
+  name: 'products',
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    // All Products
+    builder
+      .addCase(getProducts.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getProducts.fulfilled, (state, action) => {
+        state.items = action.payload;
+        state.loading = false;
+      })
+      .addCase(getProducts.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message || 'Something went wrong';
+      });
 
-    extraReducers: builder => {
-        builder
-            .addCase(getProducts.pending, (state) =>{
-                state.loading = true,
-                state.error = null
-            })
-            .addCase(getProducts.fulfilled, (state, action) => {
-                state.items = action.payload
-                state.loading = false
-            })
-            .addCase(getProducts.rejected, (state , action) =>{
-                state.loading = true,
-                state.error = action.error.message || 'Something went Wrong'
-            })
-    }
+    // Search Products
+    builder
+      .addCase(searchProduct.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(searchProduct.fulfilled, (state, action) => {
+        state.items = action.payload;
+        state.loading = false;
+      })
+      .addCase(searchProduct.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message || 'Something went wrong';
+      });
+  },
+});
 
-})
-
-export default productsSlice.reducer
+export default productsSlice.reducer;

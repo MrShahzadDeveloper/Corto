@@ -1,15 +1,9 @@
 import DealsProduct from '@/components/DealsProduct';
-import TestProducts from '@/components/TestProducts';
-import { ProductProvider } from '@/context/ProductContext';
-import { store } from '@/redux/store';
-import { StyleSheet, View, Text } from 'react-native';
-import { Provider } from 'react-redux';
+import { StyleSheet } from 'react-native';
 
 const Deals = () => {
     return (
-        <Provider store={store}>
-            <DealsProduct />
-        </Provider>
+        <DealsProduct />
     );
 }
 
